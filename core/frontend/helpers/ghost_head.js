@@ -129,6 +129,11 @@ module.exports = function ghost_head(options) { // eslint-disable-line camelcase
                     head.push('<meta name="description" content="' + escapeExpression(metaData.metaDescription) + '" />');
                 }
 
+                // add keywords if exist
+                if (metaData.metaKeywords && metaData.metaKeywords.length > 0) {
+                    head.push('<meta name="keywords" content="' + escapeExpression(metaData.metaKeywords) + '" />');
+                }
+
                 // no output in head if a publication icon is not set
                 if (settingsCache.get('icon')) {
                     head.push('<link rel="icon" href="' + favicon + '" type="image/' + iconType + '" />');

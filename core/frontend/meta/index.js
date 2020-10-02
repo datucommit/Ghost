@@ -12,6 +12,7 @@ const getBlogLogo = require('./blog_logo');
 const getRssUrl = require('./rss_url');
 const getTitle = require('./title');
 const getDescription = require('./description');
+const getMetaKeywords = require('./meta_keywords');
 const getCoverImage = require('./cover_image');
 const getAuthorImage = require('./author_image');
 const getAuthorFacebook = require('./author_fb_url');
@@ -37,6 +38,7 @@ function getMetaData(data, root) {
         rssUrl: getRssUrl(data, true),
         metaTitle: getTitle(data, root),
         metaDescription: getDescription(data, root) || null,
+        metaKeywords: getMetaKeywords(data, root) || null,
         coverImage: {
             url: getCoverImage(data, true)
         },
