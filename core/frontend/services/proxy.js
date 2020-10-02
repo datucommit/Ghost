@@ -55,6 +55,7 @@ module.exports = {
         getAssetUrl: require('../meta/asset_url'), // asset
         getMetaDataExcerpt: require('../meta/excerpt'), // excerpt
         getMetaDataDescription: require('../meta/description'), // meta_desc
+        getMetaDataKeywords: require('../meta/meta_keywords'), // meta_desc
         getMetaDataTitle: require('../meta/title'), // meta_title
         getPaginatedUrl: require('../meta/paginated_url'), // page_url
         getMetaDataUrl: require('../meta/url') // url
