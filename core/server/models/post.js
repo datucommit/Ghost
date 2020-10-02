@@ -392,7 +392,6 @@ Post = ghostBookshelf.Model.extend({
         const urlTransformMap = {
             mobiledoc: 'mobiledocAbsoluteToRelative',
             custom_excerpt: 'htmlAbsoluteToRelative',
-            custom_sidebar: 'htmlAbsoluteToRelative',
             codeinjection_head: 'htmlAbsoluteToRelative',
             codeinjection_foot: 'htmlAbsoluteToRelative',
             feature_image: 'absoluteToRelative',
