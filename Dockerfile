@@ -3,12 +3,19 @@ FROM node:12
 # Create app directory
 WORKDIR /usr/src/app
 
-COPY . .
-
 RUN yarn global add knex-migrator grunt-cli ember-cli
 
-RUN yarn setup
+COPY . .
+
+RUN yarn
+
+RUN yarn --cwd "core/client" install
+
+#RUN yarn setup
+#RUN yarn start
 
 EXPOSE 2368
 
-RUN grunt dev
+RUN grunt
+RUN grunt prod
+CMD ["yarn", "start"]
