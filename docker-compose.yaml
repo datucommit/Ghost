@@ -15,7 +15,8 @@ services:
       database__connection__port: 3306
       database__connection__user: intermedium
       database__connection__password: intermedium
-      database__connection__database: utah
+      database__connection__database: delaware
+      subdomain: utah
       server__host: 0.0.0.0
       server__port: 2368
       NODE_ENV: production
