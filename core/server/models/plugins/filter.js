@@ -77,6 +77,13 @@ const filter = function filter(Bookshelf) {
             let defaults = this.defaultFilters(options);
             let transformer = options.mongoTransformer;
 
+            // @Intermedia added subdomain check on filter
+            if (options.filter && (options.filter.includes('type:post') || options.filter.includes('type:page'))) {
+                if (!options.filter.includes('domain:')) {
+                    custom = custom + `+domain:${process.env.subdomain}`;
+                }
+            }
+
             debug('custom', custom);
             debug('extra', extra);
             debug('enforced', overrides);
