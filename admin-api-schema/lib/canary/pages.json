@@ -8,6 +8,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
+          "domain": {
+              "type": "string",
+              "maxLength": 200
+          },
         "title": {
           "type": "string",
           "maxLength": 2000
@@ -53,6 +57,10 @@
           "type": ["string", "null"],
           "maxLength": 500
         },
+          "meta_keywords": {
+              "type": ["string", "null"],
+              "maxLength": 500
+          },
         "updated_at": {
           "type": ["string", "null"],
           "format": "date-time"

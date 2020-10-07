@@ -11,8 +11,8 @@ class SiteMapManager {
 
         this.pages = options.pages || this.createPagesGenerator(options);
         this.posts = options.posts || this.createPostsGenerator(options);
-        this.users = this.authors = options.authors || this.createUsersGenerator(options);
-        this.tags = options.tags || this.createTagsGenerator(options);
+        // this.users = this.authors = options.authors || this.createUsersGenerator(options);
+        // this.tags = options.tags || this.createTagsGenerator(options);
         this.index = options.index || this.createIndexGenerator(options);
 
         events.on('router.created', (router) => {
@@ -26,18 +26,32 @@ class SiteMapManager {
         });
 
         events.on('url.added', (obj) => {
-            this[obj.resource.config.type].addUrl(obj.url.absolute, obj.resource.data);
+            switch (obj.resource.config.type) {
+            case 'posts':
+            case 'pages':
+                this[obj.resource.config.type].addUrl(obj.url.absolute, obj.resource.data);
+                break;
+            default:
+                break;
+            }
         });
 
         events.on('url.removed', (obj) => {
-            this[obj.resource.config.type].removeUrl(obj.url.absolute, obj.resource.data);
+            switch (obj.resource.config.type) {
+            case 'posts':
+            case 'pages':
+                this[obj.resource.config.type].removeUrl(obj.url.absolute, obj.resource.data);
+                break;
+            default:
+                break;
+            }
         });
 
         events.on('routers.reset', () => {
             this.pages && this.pages.reset();
             this.posts && this.posts.reset();
-            this.users && this.users.reset();
-            this.tags && this.tags.reset();
+            // this.users && this.users.reset();
+            // this.tags && this.tags.reset();
         });
     }
 
@@ -45,9 +59,9 @@ class SiteMapManager {
         return new IndexMapGenerator({
             types: {
                 pages: this.pages,
-                posts: this.posts,
-                authors: this.authors,
-                tags: this.tags
+                posts: this.posts
+                // authors: this.authors,
+                // tags: this.tags
             }
         });
     }

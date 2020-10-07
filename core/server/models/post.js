@@ -956,6 +956,8 @@ Post = ghostBookshelf.Model.extend({
         let options = this.filterOptions(unfilteredOptions, 'add', {extraAllowedProperties: ['id']});
 
         const addPost = (() => {
+            // @Intermedia added subdomain in post add
+            data.domain = process.env.subdomain
             return ghostBookshelf.Model.add.call(this, data, options)
                 .then((post) => {
                     return this.findOne({

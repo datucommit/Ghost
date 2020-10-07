@@ -983,6 +983,12 @@ ghostBookshelf.Model = ghostBookshelf.Model.extend({
         // @NOTE: The API layer decides if this option is allowed
         if (options.filter) {
             model.applyDefaultAndCustomFilters(options);
+        } else {
+            // @Intermedia added domain to slug queries
+            if (options.withRelated && options.withRelated[0] === 'posts_meta' && data.hasOwnProperty('slug')) {
+                options.filter = `domain:${process.env.subdomain}`;
+                model.applyDefaultAndCustomFilters(options);
+            }
         }
 
         // Ensure only valid fields/columns are added to query

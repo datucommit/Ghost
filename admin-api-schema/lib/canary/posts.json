@@ -8,6 +8,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
+          "domain": {
+              "type": "string",
+              "maxLength": 200
+          },
         "title": {
           "type": "string",
           "maxLength": 2000

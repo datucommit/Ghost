@@ -50,6 +50,9 @@ class BaseSiteMapGenerator {
     }
 
     addUrl(url, datum) {
+        if (datum.domain !== process.env.subdomain) {
+            return;
+        }
         const node = this.createUrlNodeFromDatum(url, datum);
 
         if (node) {
