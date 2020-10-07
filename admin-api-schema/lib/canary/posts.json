@@ -71,7 +71,7 @@
         },
         "custom_excerpt": {
           "type": ["string", "null"],
-          "maxLength": 300
+          "maxLength": 800
         },
         "codeinjection_head": {
           "type": ["string", "null"],
