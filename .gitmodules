@@ -1,6 +1,6 @@
 [submodule "content/themes/casper"]
 	path = content/themes/casper
-	url = ../../datucommit/Casper.git
+	url = ../../TryGhost/Casper.git
 [submodule "core/client"]
 	path = core/client
-	url = ../../datucommit/Ghost-Admin.git
+	url = ../../TryGhost/Ghost-Admin.git
