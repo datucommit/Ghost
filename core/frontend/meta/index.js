@@ -34,8 +34,8 @@ function getMetaData(data, root) {
         ampUrl: getAmpUrl(data),
         previousUrl: getPaginatedUrl('prev', data, true),
         nextUrl: getPaginatedUrl('next', data, true),
-        authorUrl: getAuthorUrl(data, true),
-        rssUrl: getRssUrl(data, true),
+        // authorUrl: getAuthorUrl(data, true),
+        // rssUrl: getRssUrl(data, true),
         metaTitle: getTitle(data, root),
         metaDescription: getDescription(data, root) || null,
         metaKeywords: getMetaKeywords(data, root) || null,
@@ -45,27 +45,27 @@ function getMetaData(data, root) {
         authorImage: {
             url: getAuthorImage(data, true)
         },
-        ogImage: {
-            url: getOgImage(data)
-        },
-        ogTitle: getTitle(data, root, {property: 'og'}),
-        ogDescription: getDescription(data, root, {property: 'og'}),
-        twitterImage: getTwitterImage(data, true),
-        twitterTitle: getTitle(data, root, {property: 'twitter'}),
-        twitterDescription: getDescription(data, root, {property: 'twitter'}),
-        authorFacebook: getAuthorFacebook(data),
-        creatorTwitter: getCreatorTwitter(data),
+        // ogImage: {
+        //     url: getOgImage(data)
+        // },
+        // ogTitle: getTitle(data, root, {property: 'og'}),
+        // ogDescription: getDescription(data, root, {property: 'og'}),
+        // twitterImage: getTwitterImage(data, true),
+        // twitterTitle: getTitle(data, root, {property: 'twitter'}),
+        // twitterDescription: getDescription(data, root, {property: 'twitter'}),
+        // authorFacebook: getAuthorFacebook(data),
+        // creatorTwitter: getCreatorTwitter(data),
         keywords: getKeywords(data),
-        publishedDate: getPublishedDate(data),
-        modifiedDate: getModifiedDate(data),
-        ogType: getOgType(data),
+        // publishedDate: getPublishedDate(data),
+        // modifiedDate: getModifiedDate(data),
+        // ogType: getOgType(data),
         // @TODO: pass into each meta helper - wrap each helper
         site: {
             title: settingsCache.get('title'),
             description: settingsCache.get('description'),
             url: urlUtils.urlFor('home', true),
-            facebook: settingsCache.get('facebook'),
-            twitter: settingsCache.get('twitter'),
+            // facebook: settingsCache.get('facebook'),
+            // twitter: settingsCache.get('twitter'),
             timezone: settingsCache.get('timezone'),
             navigation: settingsCache.get('navigation'),
             icon: settingsCache.get('icon'),
@@ -102,6 +102,7 @@ function getMetaData(data, root) {
     return Promise.props(getImageDimensions(metaData)).then(function () {
         metaData.structuredData = getStructuredData(metaData);
         metaData.schema = getSchema(metaData, data);
+        console.log('schema mains', metaData.schema)
 
         return metaData;
     }).catch(function (err) {

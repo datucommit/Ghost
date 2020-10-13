@@ -29,7 +29,7 @@ function schemaPublisherObject(metaDataVal) {
         '@type': 'Organization',
         name: escapeExpression(metaDataVal.site.title),
         url: metaDataVal.site.url || null,
-        logo: schemaImageObject(metaDataVal.site.logo) || null
+        // logo: schemaImageObject(metaDataVal.site.logo) || null
     };
 
     return publisherObject;
@@ -55,22 +55,22 @@ function trimSameAs(data, context) {
         if (data[context].primary_author.website) {
             sameAs.push(escapeExpression(data[context].primary_author.website));
         }
-        if (data[context].primary_author.facebook) {
-            sameAs.push(socialUrls.facebook(data[context].primary_author.facebook));
-        }
-        if (data[context].primary_author.twitter) {
-            sameAs.push(socialUrls.twitter(data[context].primary_author.twitter));
-        }
+        // if (data[context].primary_author.facebook) {
+        //     sameAs.push(socialUrls.facebook(data[context].primary_author.facebook));
+        // }
+        // if (data[context].primary_author.twitter) {
+        //     sameAs.push(socialUrls.twitter(data[context].primary_author.twitter));
+        // }
     } else if (context === 'author') {
         if (data.author.website) {
             sameAs.push(escapeExpression(data.author.website));
         }
-        if (data.author.facebook) {
-            sameAs.push(socialUrls.facebook(data.author.facebook));
-        }
-        if (data.author.twitter) {
-            sameAs.push(socialUrls.twitter(data.author.twitter));
-        }
+        // if (data.author.facebook) {
+        //     sameAs.push(socialUrls.facebook(data.author.facebook));
+        // }
+        // if (data.author.twitter) {
+        //     sameAs.push(socialUrls.twitter(data.author.twitter));
+        // }
     }
 
     return sameAs;
@@ -79,7 +79,9 @@ function trimSameAs(data, context) {
 function getPostSchema(metaData, data) {
     // CASE: metaData.excerpt for post context is populated by either the custom excerpt, the meta description,
     // or the automated excerpt of 50 words. It is empty for any other context.
-    const description = metaData.excerpt ? escapeExpression(metaData.excerpt) : null;
+    const description = metaData.metaDescription ?
+        escapeExpression(metaData.metaDescription) :
+        null;
 
     let schema;
 
@@ -89,21 +91,21 @@ function getPostSchema(metaData, data) {
         '@context': 'https://schema.org',
         '@type': 'Article',
         publisher: schemaPublisherObject(metaData),
-        author: {
-            '@type': 'Person',
-            name: escapeExpression(data[context].primary_author.name),
-            image: schemaImageObject(metaData.authorImage),
-            url: metaData.authorUrl,
-            sameAs: trimSameAs(data, context),
-            description: data[context].primary_author.metaDescription ?
-                escapeExpression(data[context].primary_author.metaDescription) :
-                null
-        },
+        // author: {
+        //     '@type': 'Person',
+        //     name: escapeExpression(data[context].primary_author.name),
+        //     image: schemaImageObject(metaData.authorImage),
+        //     url: metaData.authorUrl,
+        //     sameAs: trimSameAs(data, context),
+        //     description: data[context].primary_author.metaDescription ?
+        //         escapeExpression(data[context].primary_author.metaDescription) :
+        //         null
+        // },
         headline: escapeExpression(metaData.metaTitle),
         url: metaData.url,
         datePublished: metaData.publishedDate,
         dateModified: metaData.modifiedDate,
-        image: schemaImageObject(metaData.coverImage),
+        // image: schemaImageObject(metaData.coverImage),
         keywords: metaData.keywords && metaData.keywords.length > 0 ?
             metaData.keywords.join(', ') : null,
         description: description,
@@ -112,14 +114,14 @@ function getPostSchema(metaData, data) {
             '@id': metaData.site.url || null
         }
     };
-    schema.author = trimSchema(schema.author);
+    // schema.author = trimSchema(schema.author);
     return trimSchema(schema);
 }
 
 function getHomeSchema(metaData) {
     const schema = {
         '@context': 'https://schema.org',
-        '@type': 'WebSite',
+        '@type': 'Organization',
         publisher: schemaPublisherObject(metaData),
         url: metaData.url,
         image: schemaImageObject(metaData.coverImage),
@@ -175,17 +177,18 @@ function getAuthorSchema(metaData, data) {
 }
 
 function getSchema(metaData, data) {
+    // console.log('toschema', metaData, data)
     if (!config.isPrivacyDisabled('useStructuredData')) {
         const context = data.context ? data.context : null;
         if (_.includes(context, 'post') || _.includes(context, 'page') || _.includes(context, 'amp')) {
             return getPostSchema(metaData, data);
         } else if (_.includes(context, 'home')) {
             return getHomeSchema(metaData);
-        } else if (_.includes(context, 'tag')) {
+        } /*else if (_.includes(context, 'tag')) {
             return getTagSchema(metaData, data);
         } else if (_.includes(context, 'author')) {
             return getAuthorSchema(metaData, data);
-        }
+        }*/
     }
     return null;
 }

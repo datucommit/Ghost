@@ -181,12 +181,11 @@ module.exports = function ghost_head(options) { // eslint-disable-line camelcase
                 }
             }
 
-            head.push('<meta name="generator" content="Ghost ' +
-                escapeExpression(safeVersion) + '" />');
+            head.push('<meta name="generator" content="Fantasma" />');
 
-            head.push('<link rel="alternate" type="application/rss+xml" title="' +
-                escapeExpression(metaData.site.title) + '" href="' +
-                escapeExpression(metaData.rssUrl) + '" />');
+            // head.push('<link rel="alternate" type="application/rss+xml" title="' +
+            //     escapeExpression(metaData.site.title) + '" href="' +
+            //     escapeExpression(metaData.rssUrl) + '" />');
 
             // no code injection for amp context!!!
             if (!_.includes(context, 'amp')) {

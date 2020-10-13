@@ -16,8 +16,17 @@ function getTitle(data, root, options = {}) {
         pageString = _.has(options.hash, 'page') ? options.hash.page.replace('%', pagination.page) : ' (Page ' + pagination.page + ')';
     }
 
+    // Post title
+    if (_.includes(context, 'post') && data.post) {
+        title = data.post[optionsPropertyName] || data.post.meta_title || data.post.title;
+        // Page title dependent on legacy object formatting (https://github.com/TryGhost/Ghost/issues/10042)
+    } else if (_.includes(context, 'page') && data.post) {
+        title = data.post[optionsPropertyName] || data.post.meta_title || data.post.title;
+        // Page title v2
+    } else if (_.includes(context, 'page') && data.page) {
+        title = data.page[optionsPropertyName] || data.page.meta_title || data.page.title;
     // If there's a specific meta title
-    if (data.meta_title) {
+    } else if (data.meta_title) {
         title = data.meta_title;
     // Home title
     } else if (_.includes(context, 'home')) {
@@ -38,16 +47,7 @@ function getTitle(data, root, options = {}) {
     // Tag title, index
     } else if (_.includes(context, 'tag') && data.tag) {
         title = data.tag[optionsPropertyName] || data.tag.meta_title || data.tag.name + ' - ' + siteTitle;
-    // Post title
-    } else if (_.includes(context, 'post') && data.post) {
-        title = data.post[optionsPropertyName] || data.post.meta_title || data.post.title;
-    // Page title dependent on legacy object formatting (https://github.com/TryGhost/Ghost/issues/10042)
-    } else if (_.includes(context, 'page') && data.post) {
-        title = data.post[optionsPropertyName] || data.post.meta_title || data.post.title;
-    // Page title v2
-    } else if (_.includes(context, 'page') && data.page) {
-        title = data.page[optionsPropertyName] || data.page.meta_title || data.page.title;
-    // Fallback
+        // Fallback
     } else {
         title = siteTitle + pageString;
     }

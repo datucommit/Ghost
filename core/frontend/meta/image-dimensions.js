@@ -12,8 +12,8 @@ const {imageSizeCache} = require('../../server/lib/image');
 function getImageDimensions(metaData) {
     const fetch = {
         coverImage: imageSizeCache(metaData.coverImage.url),
-        authorImage: imageSizeCache(metaData.authorImage.url),
-        ogImage: imageSizeCache(metaData.ogImage.url),
+        // authorImage: imageSizeCache(metaData.authorImage.url),
+        // ogImage: imageSizeCache(metaData.ogImage.url),
         logo: imageSizeCache(metaData.site.logo.url)
     };
 
