@@ -59,7 +59,7 @@
           },
           "meta_keywords": {
               "type": ["string", "null"],
-              "maxLength": 500
+              "maxLength": 700
           },
         "updated_at": {
           "type": ["string", "null"],

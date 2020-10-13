@@ -59,7 +59,7 @@
         },
           "meta_keywords": {
               "type": ["string", "null"],
-              "maxLength": 500
+              "maxLength": 700
           },
         "updated_at": {
           "type": ["string", "null"],
@@ -71,7 +71,7 @@
         },
         "custom_excerpt": {
           "type": ["string", "null"],
-          "maxLength": 300
+          "maxLength": 800
         },
         "codeinjection_head": {
           "type": ["string", "null"],
