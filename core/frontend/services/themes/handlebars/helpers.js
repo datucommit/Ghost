@@ -42,6 +42,12 @@ registerAllCoreHelpers = function registerAllCoreHelpers() {
     registerThemeHelper('facebook_url', coreHelpers.facebook_url);
     registerThemeHelper('url', coreHelpers.url);
 
+    // Fantasma helpers
+    registerThemeHelper('subdomain', coreHelpers.subdomain);
+    registerThemeHelper('state', coreHelpers.state);
+    registerThemeHelper('state_key', coreHelpers.state_key);
+    registerThemeHelper('subdomain_asset', coreHelpers.subdomain_asset);
+
     // Async theme helpers
     registerAsyncThemeHelper('ghost_head', coreHelpers.ghost_head);
     registerAsyncThemeHelper('next_post', coreHelpers.prev_post);
